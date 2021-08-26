@@ -1,0 +1,9 @@
+{
+    "env" : {
+        "PG_HOST" : "ec2-34-194-14-176.compute-1.amazonaws.com",
+        "PG_USER" : "hecmxnzjhazbkg",
+        "PG_PORT" : 5432,
+        "PG_PASS" : "03af4b68119a39d25edd446beb9b9936d7f6514f9a3007288de4695a3f7868f4",
+        "PG_DB" : "deqq0ftmbleo61"
+    }
+}
