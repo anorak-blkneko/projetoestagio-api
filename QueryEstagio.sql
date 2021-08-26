@@ -6,6 +6,38 @@ CREATE TABLE pessoa (
     nome_pessoa varchar(100) NOT NULL
 );
 
+--ENDEREÇO
+CREATE TABLE endereco(
+	id_endereco SERIAL PRIMARY KEY NOT NULL,
+	id_pessoa INT NOT NULL,
+	uf CHAR(2) NOT NULL,
+	complemento VARCHAR(50) NOT NULL,
+	logradouro VARCHAR(50) NOT NULL,
+	cep CHAR(8) NOT NULL,
+	numero VARCHAR(10) NOT NULL,
+	FOREIGN KEY(id_pessoa) REFERENCES pessoa(id_pessoa)
+);
+
+
+--TELEFONE
+CREATE TABLE telefone(
+	id_telefone SERIAL PRIMARY KEY NOT NULL,
+	id_pessoa INT NOT NULL,
+	telefone VARCHAR(11) NOT NULL,
+	FOREIGN KEY(id_pessoa) REFERENCES pessoa(id_pessoa)
+);
+
+
+
+
+--EMAIL
+CREATE TABLE email(
+	id_email SERIAL PRIMARY KEY NOT NULL,
+	id_pessoa INT NOT NULL,
+	email VARCHAR(50) NOT NULL,
+	FOREIGN KEY(id_pessoa) REFERENCES pessoa(id_pessoa)
+);
+
 --CLIENTE
 CREATE TABLE cliente(
 	id_pessoa INT NOT NULL,
@@ -13,9 +45,9 @@ CREATE TABLE cliente(
 	id_endereco INT NOT NULL,
 	id_email INT NOT NULL,
 	id_telefone INT NOT NULL,
-	FOREIGN KEY(id_pessoa) REFERENCES pessoa(id_pessoa)
-	FOREIGN KEY(id_endereco) REFERENCES endereco(id_endereco)
-	FOREIGN KEY(id_email) REFERENCES email(id_email)
+	FOREIGN KEY(id_pessoa) REFERENCES pessoa(id_pessoa),
+	FOREIGN KEY(id_endereco) REFERENCES endereco(id_endereco),	
+	FOREIGN KEY(id_email) REFERENCES email(id_email),
 	FOREIGN KEY(id_telefone) REFERENCES telefone(id_telefone)
 );
 
@@ -26,43 +58,15 @@ CREATE TABLE funcionario(
 	id_endereco INT NOT NULL,
 	id_email INT NOT NULL,
 	id_telefone INT NOT NULL,
-	FOREIGN KEY(id_pessoa) REFERENCES pessoa(id_pessoa)
-	FOREIGN KEY(id_endereco) REFERENCES endereco(id_endereco)
-	FOREIGN KEY(id_email) REFERENCES email(id_email)
+	FOREIGN KEY(id_pessoa) REFERENCES pessoa(id_pessoa),
+	FOREIGN KEY(id_endereco) REFERENCES endereco(id_endereco),
+	FOREIGN KEY(id_email) REFERENCES email(id_email),
 	FOREIGN KEY(id_telefone) REFERENCES telefone(id_telefone)
-);
-
---ENDEREÇO
-CREATE TABLE endereco(
-	id_endereco SERIAL NOT NULL,
-	id_pessoa INT NOT NULL,
-	uf CHAR(2) NOT NULL,
-	complemento VARCHAR(50) NOT NULL,
-	logradouro VARCHAR(50) NOT NULL,
-	cep CHAR(8) NOT NULL,
-	numero VARCHAR(10) NOT NULL,
-	FOREIGN KEY(id_pessoa) REFERENCES pessoa(id_pessoa)
-);
-
---TELEFONE
-CREATE TABLE telefone(
-	id_telefone SERIAL NOT NULL,
-	id_pessoa INT NOT NULL,
-	telefone VARCHAR(11) NOT NULL,
-	FOREIGN KEY(id_pessoa) REFERENCES pessoa(id_pessoa)
-);
-
---EMAIL
-CREATE TABLE email(
-	id_email SERIAL NOT NULL,
-	id_pessoa INT NOT NULL,
-	email VARCHAR(50) NOT NULL,
-	FOREIGN KEY(id_pessoa) REFERENCES pessoa(id_pessoa)
 );
 
 --SERVIÇO
 CREATE TABLE servico(
-	id_servico SERIAL NOT NULL,
+	id_servico SERIAL PRIMARY KEY NOT NULL,
   nome VARCHAR(100) NOT NULL,
   valor DECIMAL(12,2) NOT NULL,
   duracao VARCHAR(100) NOT NULL,
@@ -73,14 +77,14 @@ CREATE TABLE servico(
 
 --ORÇAMENTO
 CREATE TABLE orcamento(
-	id_orcamento SERIAL NOT NULL,
+	id_orcamento SERIAL PRIMARY KEY NOT NULL,
 	id_cliente INT NOT NULL,
   id_funcionario INT NOT NULL,
   id_servico INT NOT NULL,
 	data DATE NOT NULL,
   valor DECIMAL(12,2) NOT NULL,
-	FOREIGN KEY(id_cliente) REFERENCES cliente(id_cliente)
-  FOREIGN KEY(id_funcionario) REFERENCES funcionario(id_funcionario)
+	FOREIGN KEY(id_cliente) REFERENCES cliente(id_cliente),
+  FOREIGN KEY(id_funcionario) REFERENCES funcionario(id_funcionario),
   FOREIGN KEY(id_servico) REFERENCES servico(id_servico)
 );
 
@@ -88,8 +92,23 @@ CREATE TABLE orcamento(
 INSERT INTO pessoa (nome_pessoa) VALUES ('Augusto');
 INSERT INTO pessoa (nome_pessoa) VALUES ('Renan');
 
-INSERT INTO cliente VALUES (1,'12345678901234', 1, 1, 1);
+INSERT INTO endereco (id_pessoa, uf, complemento, logradouro, cep, numero) VALUES (1, 'sp', 'casa', 'teste', '12345678', '111');
 
+INSERT INTO telefone (id_pessoa, telefone) VALUES (1, '33433333');
+
+INSERT INTO email (id_pessoa, email) VALUES (1, 'nome@gmail.com');
+
+INSERT INTO cliente VALUES (1,'12345678901234', 1, 1, 1);
 
 SELECT * FROM pessoa;
 SELECT * FROM cliente;
+SELECT * FROM endereco;
+SELECT * FROM telefone;
+SELECT * FROM email;
+
+----------------DROPS----------------
+DROP TABLE pessoa;
+DROP TABLE cliente;
+DROP TABLE endereco;
+DROP TABLE email;
+DROP TABLE telefone;
