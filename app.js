@@ -51,7 +51,7 @@ app.use('/endereco', rotaEndereco);
 app.use('/funcionario', rotaFuncionario);
 app.use('/orcamento', rotaOrcamento);
 app.use('/pessoa', rotaPessoa);
-app.use('/servicos', rotaServico);
+app.use('/servico', rotaServico);
 app.use('/telefone', rotaTelefone);
 
 
