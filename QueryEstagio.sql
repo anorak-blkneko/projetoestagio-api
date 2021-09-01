@@ -67,25 +67,24 @@ CREATE TABLE funcionario(
 --SERVIÇO
 CREATE TABLE servico(
 	id_servico SERIAL PRIMARY KEY NOT NULL,
-  nome VARCHAR(100) NOT NULL,
-  valor DECIMAL(12,2) NOT NULL,
-  duracao VARCHAR(100) NOT NULL,
-	contratante_id INT NOT NULL,
-	status VARCHAR(50) NOT NULL,
-	FOREIGN KEY(id_pessoa) REFERENCES pessoa(id_pessoa)
+  	nome VARCHAR(100) NOT NULL,
+
 );
 
 --ORÇAMENTO
 CREATE TABLE orcamento(
 	id_orcamento SERIAL PRIMARY KEY NOT NULL,
 	id_cliente INT NOT NULL,
-  id_funcionario INT NOT NULL,
-  id_servico INT NOT NULL,
-	data DATE NOT NULL,
-  valor DECIMAL(12,2) NOT NULL,
+  	id_funcionario INT NOT NULL,
+  	id_servico INT NOT NULL,
+	data_criacao DATE NOT NULL,
+	data_entrega DATE,
+  	valor DECIMAL(12,2) NOT NULL,
+	status_andamento VARCHAR(50) NOT NULL,
+	FOREIGN KEY(id_pessoa) REFERENCES pessoa(id_pessoa)
 	FOREIGN KEY(id_cliente) REFERENCES cliente(id_cliente),
-  FOREIGN KEY(id_funcionario) REFERENCES funcionario(id_funcionario),
-  FOREIGN KEY(id_servico) REFERENCES servico(id_servico)
+  	FOREIGN KEY(id_funcionario) REFERENCES funcionario(id_funcionario),
+  	FOREIGN KEY(id_servico) REFERENCES servico(id_servico)
 );
 
 ----------------INSERTS----------------
