@@ -6,6 +6,13 @@ const cors = require('cors');
 
 const rotaUsuarios = require('./routes/usuarios');
 const rotaCliente = require('./routes/cliente');
+const rotaEmail = require('./routes/email');
+const rotaEndereco = require('./routes/endereco');
+const rotaFuncionario = require('./routes/funcionario');
+const rotaOrcamento = require('./routes/orcamento');
+const rotaPessoa = require('./routes/pessoa');
+const rotaServico = require('./routes/servicos');
+const rotaTelefone = require('./routes/telefone');
 
 //app.use(bodyParser.urlencoded({extended: false})); 
 //app.use(bodyParser.json()); 
@@ -39,6 +46,13 @@ app.use(morgan('dev'));
 
 app.use('/usuarios', rotaUsuarios);
 app.use('/cliente', rotaCliente);
+app.use('/email', rotaEmail);
+app.use('/endereco', rotaEndereco);
+app.use('/funcionario', rotaFuncionario);
+app.use('/orcamento', rotaOrcamento);
+app.use('/pessoa', rotaPessoa);
+app.use('/servicos', rotaServico);
+app.use('/telefone', rotaTelefone);
 
 
 
