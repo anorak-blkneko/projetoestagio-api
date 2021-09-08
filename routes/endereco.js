@@ -32,8 +32,8 @@ router.get('/:id', (req, res, next) =>{
 router.post('/', (req, res, next) =>{
     
     const enderecos = req.body;
-    let insertQuery = `insert into endereco ( "id_endereco", "id_pessoa", "uf", "complemento", "logradouro", "cep", "numero") 
-                       values(${enderecos.idendereco}, ${enderecos.idpessoa}, '${enderecos.uf}',  '${enderecos.complemento}', '${enderecos.logradouro}', ${enderecos.cep}, ${enderecos.numero})`
+    let insertQuery = `insert into endereco ("id_pessoa", "uf", "complemento", "logradouro", "cep", "numero") 
+                       values(${enderecos.idpessoa}, '${enderecos.uf}',  '${enderecos.complemento}', '${enderecos.logradouro}', ${enderecos.cep}, ${enderecos.numero})`
 
     client.query(insertQuery, (err, result)=>{
         if(!err){
