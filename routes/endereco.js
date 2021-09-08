@@ -56,7 +56,7 @@ router.patch('/:id', (req, res, next) =>{
                        complemento = '${user.complemento}',
                        logradouro = '${user.logradouro}',
                        cep = '${user.cep}',
-                       numero = '${user.numero}',
+                       numero = '${user.numero}'
                        where id_endereco = ${req.params.id}`
 
     client.query(updateQuery, (err, result)=>{
