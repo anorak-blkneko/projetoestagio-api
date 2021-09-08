@@ -33,7 +33,7 @@ router.post('/', (req, res, next) =>{
     
     const orcamentos = req.body;
     let insertQuery = `insert into orcamento ("id_cliente", "id_funcionario", "id_servico", "data_criacao", "data_entrega", "valor", "status_andamento") 
-                       values(${orcamentos.idcliente}, ${orcamentos.idfuncionario}, ${orcamentos.idservico}, ${orcamentos.datacri}, ${orcamentos.dataent}, ${orcamentos.valor}, '${orcamentos.statusand}')`
+                       values(${orcamentos.idcliente}, ${orcamentos.idfuncionario}, ${orcamentos.idservico}, '${orcamentos.datacri}', '${orcamentos.dataent}', ${orcamentos.valor}, '${orcamentos.statusand}')`
 
     client.query(insertQuery, (err, result)=>{
         if(!err){

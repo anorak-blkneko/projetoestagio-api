@@ -40,7 +40,7 @@ CREATE TABLE email(
 
 --CLIENTE
 CREATE TABLE cliente(
-	id_pessoa INT NOT NULL,
+	id_pessoa INT PRIMARY KEY NOT NULL,
 	cnpj char(14) NOT NULL,
 	id_endereco INT NOT NULL,
 	id_email INT NOT NULL,
@@ -53,7 +53,7 @@ CREATE TABLE cliente(
 
 --FUNCIONARIO
 CREATE TABLE funcionario(
-	id_pessoa INT NOT NULL,
+	id_pessoa INT PRIMARY KEY NOT NULL,
 	cpf char(11) NOT NULL,
 	id_endereco INT NOT NULL,
 	id_email INT NOT NULL,
@@ -67,8 +67,7 @@ CREATE TABLE funcionario(
 --SERVIÇO
 CREATE TABLE servico(
 	id_servico SERIAL PRIMARY KEY NOT NULL,
-  	nome VARCHAR(100) NOT NULL,
-
+  	nome VARCHAR(100) NOT NULL
 );
 
 --ORÇAMENTO
@@ -81,11 +80,11 @@ CREATE TABLE orcamento(
 	data_entrega DATE,
   	valor DECIMAL(12,2) NOT NULL,
 	status_andamento VARCHAR(50) NOT NULL,
-	FOREIGN KEY(id_pessoa) REFERENCES pessoa(id_pessoa)
-	FOREIGN KEY(id_cliente) REFERENCES cliente(id_cliente),
-  	FOREIGN KEY(id_funcionario) REFERENCES funcionario(id_funcionario),
+	FOREIGN KEY(id_cliente) REFERENCES cliente(id_pessoa),
+  	FOREIGN KEY(id_funcionario) REFERENCES funcionario(id_pessoa),
   	FOREIGN KEY(id_servico) REFERENCES servico(id_servico)
 );
+
 
 ----------------INSERTS----------------
 INSERT INTO pessoa (nome_pessoa) VALUES ('Augusto');
@@ -99,11 +98,19 @@ INSERT INTO email (id_pessoa, email) VALUES (1, 'nome@gmail.com');
 
 INSERT INTO cliente VALUES (1,'12345678901234', 1, 1, 1);
 
+INSERT INTO servico (nome) VALUES ('serv1');
+
+INSERT INTO orcamento (id_cliente, id_funcionario, id_servico, data_criacao, data_entrega, valor, status_andamento) VALUES (1,1,1, '2021-09-08', '2021-12-10', 1000, 'Em Andamento');
+
+
+
 SELECT * FROM pessoa;
 SELECT * FROM cliente;
 SELECT * FROM endereco;
 SELECT * FROM telefone;
 SELECT * FROM email;
+SELECT * FROM orcamento;
+SELECT * FROM servico
 
 ----------------DROPS----------------
 DROP TABLE pessoa;
@@ -111,3 +118,5 @@ DROP TABLE cliente;
 DROP TABLE endereco;
 DROP TABLE email;
 DROP TABLE telefone;
+DROP TABLE funcionario;
+
