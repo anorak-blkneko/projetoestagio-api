@@ -52,7 +52,7 @@ router.patch('/:id', (req, res, next) =>{
     let updateQuery = `update pessoa set
                        id_pessoa = '${user.id_pessoa}',
                        nome_pessoa = '${user.nome_pessoa}'
-                       where id_pessoa = ${req.params.id_pessoa}`
+                       where id_pessoa = ${req.params.id}`
 
     client.query(updateQuery, (err, result)=>{
         if(!err){
