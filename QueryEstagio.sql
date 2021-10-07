@@ -119,4 +119,6 @@ DROP TABLE endereco;
 DROP TABLE email;
 DROP TABLE telefone;
 DROP TABLE funcionario;
+DROP TABLE servico
+DROP TABLE orcamento
 

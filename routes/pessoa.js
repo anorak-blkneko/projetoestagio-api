@@ -33,13 +33,13 @@ router.post('/', (req, res, next) =>{
     
     const pessoas = req.body;
     let insertQuery = `insert into pessoa ("nome_pessoa") 
-                       values('${pessoas.nome}')`
+                       values('${pessoas.nome_pessoa}')`
 
     client.query(insertQuery, (err, result)=>{
         if(!err){
             res.send('Insertion was successful')
         }
-        else{ console.log(err.message), console.log(pessoas.nome)}
+        else{ console.log(err.message), console.log(pessoas.nome_pessoa)}
     })
     client.end;
 
@@ -50,9 +50,9 @@ router.patch('/:id', (req, res, next) =>{
     
     let user = req.body;
     let updateQuery = `update pessoa set
-                       id_pessoa = '${user.idpessoa}',
-                       nome_pessoa = '${user.nome}'
-                       where id_pessoa = ${req.params.id}`
+                       id_pessoa = '${user.id_pessoa}',
+                       nome_pessoa = '${user.nome_pessoa}'
+                       where id_pessoa = ${req.params.id_pessoa}`
 
     client.query(updateQuery, (err, result)=>{
         if(!err){
