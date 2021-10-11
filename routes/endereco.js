@@ -33,7 +33,7 @@ router.post('/', (req, res, next) =>{
     
     const enderecos = req.body;
     let insertQuery = `insert into endereco ("id_pessoa", "uf", "complemento", "logradouro", "cep", "numero") 
-                       values(${enderecos.idpessoa}, '${enderecos.uf}',  '${enderecos.complemento}', '${enderecos.logradouro}', ${enderecos.cep}, ${enderecos.numero})`
+                       values(${enderecos.id_pessoa}, '${enderecos.uf}',  '${enderecos.complemento}', '${enderecos.logradouro}', ${enderecos.cep}, ${enderecos.numero})`
 
     client.query(insertQuery, (err, result)=>{
         if(!err){
@@ -50,8 +50,8 @@ router.patch('/:id', (req, res, next) =>{
     
     let user = req.body;
     let updateQuery = `update endereco set
-                       id_endereco = '${user.idendereco}',
-                       id_pessoa = '${user.idpessoa}',
+                       id_endereco = '${user.id_endereco}',
+                       id_pessoa = '${user.id_pessoa}',
                        uf = '${user.uf}',
                        complemento = '${user.complemento}',
                        logradouro = '${user.logradouro}',
