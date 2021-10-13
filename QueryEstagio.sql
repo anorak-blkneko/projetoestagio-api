@@ -40,7 +40,8 @@ CREATE TABLE email(
 
 --CLIENTE
 CREATE TABLE cliente(
-	id_pessoa INT PRIMARY KEY NOT NULL,
+	id_cliente SERIAL PRIMARY KEY NOT NULL,
+	id_pessoa INT NOT NULL,
 	cnpj char(14) NOT NULL,
 	id_endereco INT NOT NULL,
 	id_email INT NOT NULL,

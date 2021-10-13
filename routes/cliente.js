@@ -19,7 +19,7 @@ router.get('/', (req, res, next) =>{
 //RETORNA O CLIENTE NO ID
 router.get('/:id', (req, res, next) =>{
 
-    client.query(`Select * from cliente where id_pessoa=${req.params.id}`, (err, result)=>{
+    client.query(`Select * from cliente where id_cliente=${req.params.id}`, (err, result)=>{
         if(!err){
             res.send(result.rows);
         }
@@ -50,12 +50,12 @@ router.patch('/:id', (req, res, next) =>{
     
     let user = req.body;
     let updateQuery = `update cliente set
-                       id_pessoa = '${user.idpessoa}',
+                       id_pessoa = '${user.id_pessoa}',
                        cnpj = '${user.cnpj}',
-                       id_endereco = '${user.idendereco}',
-                       id_email = '${user.idemail}',
-                       id_telefone = '${user.idtelefone}'
-                       where id_pessoa = ${req.params.id}`
+                       id_endereco = '${user.id_endereco}',
+                       id_email = '${user.id_email}',
+                       id_telefone = '${user.id_telefone}'
+                       where id_cliente = ${req.params.id}`
 
     client.query(updateQuery, (err, result)=>{
         if(!err){
@@ -70,7 +70,7 @@ router.patch('/:id', (req, res, next) =>{
 //DELETA
 router.delete('/:id', (req, res, next) =>{
     
-    let insertQuery = `delete from cliente where id_pessoa=${req.params.id}`
+    let insertQuery = `delete from cliente where id_cliente=${req.params.id}`
 
     client.query(insertQuery, (err, result)=>{
         if(!err){
