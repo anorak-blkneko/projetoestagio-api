@@ -33,7 +33,7 @@ router.post('/', (req, res, next) =>{
     
     const emails = req.body;
     let insertQuery = `insert into email ("id_pessoa", "email") 
-                       values(${emails.idpessoa}, '${emails.email}')`
+                       values(${emails.id_pessoa}, '${emails.email}')`
 
     client.query(insertQuery, (err, result)=>{
         if(!err){
@@ -50,7 +50,7 @@ router.patch('/:id', (req, res, next) =>{
     
     let user = req.body;
     let updateQuery = `update email set
-                       id_pessoa = '${user.idpessoa}',
+                       id_pessoa = '${user.id_pessoa}',
                        email = '${user.email}'
                        where id_email = ${req.params.id}`
 
