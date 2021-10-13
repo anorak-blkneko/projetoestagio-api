@@ -33,7 +33,7 @@ router.post('/', (req, res, next) =>{
     
     const telefones = req.body;
     let insertQuery = `insert into telefone ("id_pessoa", "telefone") 
-                       values(${telefones.idpessoa}, '${telefones.telefone}')`
+                       values(${telefones.id_pessoa}, '${telefones.telefone}')`
 
     client.query(insertQuery, (err, result)=>{
         if(!err){
@@ -50,7 +50,7 @@ router.patch('/:id', (req, res, next) =>{
     
     let user = req.body;
     let updateQuery = `update telefone set
-                       id_pessoa = '${user.idpessoa}',
+                       id_pessoa = '${user.id_pessoa}',
                        telefone = '${user.telefone}'
                        where id_telefone = ${req.params.id}`
 
