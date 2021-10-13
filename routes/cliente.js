@@ -33,7 +33,7 @@ router.post('/', (req, res, next) =>{
     
     const clientes = req.body;
     let insertQuery = `insert into cliente ("id_pessoa", "cnpj", "id_endereco", "id_email", "id_telefone") 
-                       values(${clientes.idpessoa}, '${clientes.cnpj}', ${clientes.idendereco}, ${clientes.idemail}, ${clientes.idtelefone})`
+                       values(${clientes.id_pessoa}, '${clientes.cnpj}', ${clientes.id_endereco}, ${clientes.id_email}, ${clientes.id_telefone})`
 
     client.query(insertQuery, (err, result)=>{
         if(!err){
