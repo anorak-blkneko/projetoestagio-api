@@ -21,7 +21,7 @@ router.get('/', (req, res, next) =>{
 //RETORNA O FUNCIONARIO NO ID
 router.get('/:id', (req, res, next) =>{
 
-    client.query(`Select * from funcionario where id_pessoa=${req.params.id}`, (err, result)=>{
+    client.query(`Select * from funcionario where id_funcionario=${req.params.id}`, (err, result)=>{
         if(!err){
             res.send(result.rows);
         }
@@ -35,13 +35,13 @@ router.post('/', (req, res, next) =>{
 
     const funcionarios = req.body;
     let insertQuery = `insert into funcionario("id_pessoa", "cpf", "id_endereco", "id_email", "id_telefone") 
-                       values(${funcionarios.id}, '${funcionarios.cpf}', ${funcionarios.idend}, ${funcionarios.idemail}, ${funcionarios.idtel})`
+                       values(${funcionarios.id_pessoa}, '${funcionarios.cpf}', ${funcionarios.id_endereco}, ${funcionarios.id_email}, ${funcionarios.id_telefone})`
 
     client.query(insertQuery, (err, result)=>{
         if(!err){
             res.send('Insertion was successful')
         }
-        else{ console.log(err.message), console.log(funcionarios.id), console.log(funcionarios.cpf)}
+        else{ console.log(err.message), console.log(funcionarios.id_pessoa), console.log(funcionarios.cpf)}
     })
     client.end;
     
@@ -51,19 +51,19 @@ router.post('/', (req, res, next) =>{
 router.patch('/:id', (req, res, next) =>{
     
     let user = req.body;
-    let updateQuery = `update funcionario
-                       set id_pessoa = '${user.id}',
+    let updateQuery = `update funcionario set
+                       id_pessoa = '${user.id_pessoa}',
                        cpf = '${user.cpf}',
-                       id_endereco = '${user.idend}',
-                       id_email = '${user.idemail}',
-                       id_telefone = '${user.idtel}'
-                       where id_pessoa = ${req.params.id}`
+                       id_endereco = '${user.id_endereco}',
+                       id_email = '${user.id_email}',
+                       id_telefone = '${user.id_telefone}'
+                       where id_funcionario = ${req.params.id}`
 
     client.query(updateQuery, (err, result)=>{
         if(!err){
             res.send('Update was successful')
         }
-        else{ console.log(err.message), console.log(usuarios.id), console.log(usuarios.nome) , console.log(usuarios.senha) }
+        else{ console.log(err.message), console.log(user.id_pessoa)}
     })
     client.end;
 
@@ -72,7 +72,7 @@ router.patch('/:id', (req, res, next) =>{
 //DELETA
 router.delete('/:id', (req, res, next) =>{
 
-    let insertQuery = `delete from funcionario where id_pessoa=${req.params.id}`
+    let insertQuery = `delete from funcionario where id_funcionario=${req.params.id}`
 
     client.query(insertQuery, (err, result)=>{
         if(!err){

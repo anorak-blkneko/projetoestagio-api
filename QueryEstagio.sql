@@ -54,7 +54,8 @@ CREATE TABLE cliente(
 
 --FUNCIONARIO
 CREATE TABLE funcionario(
-	id_pessoa INT PRIMARY KEY NOT NULL,
+	id_funcionario SERIAL PRIMARY KEY NOT NULL,
+	id_pessoa INT NOT NULL,
 	cpf char(11) NOT NULL,
 	id_endereco INT NOT NULL,
 	id_email INT NOT NULL,
@@ -81,8 +82,8 @@ CREATE TABLE orcamento(
 	data_entrega DATE,
   	valor DECIMAL(12,2) NOT NULL,
 	status_andamento VARCHAR(50) NOT NULL,
-	FOREIGN KEY(id_cliente) REFERENCES cliente(id_pessoa),
-  	FOREIGN KEY(id_funcionario) REFERENCES funcionario(id_pessoa),
+	FOREIGN KEY(id_cliente) REFERENCES cliente(id_cliente),
+  	FOREIGN KEY(id_funcionario) REFERENCES funcionario(id_funcionario),
   	FOREIGN KEY(id_servico) REFERENCES servico(id_servico)
 );
 
@@ -97,7 +98,7 @@ INSERT INTO telefone (id_pessoa, telefone) VALUES (1, '33433333');
 
 INSERT INTO email (id_pessoa, email) VALUES (1, 'nome@gmail.com');
 
-INSERT INTO cliente VALUES (1,'12345678901234', 1, 1, 1);
+INSERT INTO cliente (id_pessoa, cnpj, id_endereco, id_email, Id_telefone) VALUES (1,'12345678901234', 1, 1, 1);
 
 INSERT INTO servico (nome) VALUES ('serv1');
 
