@@ -33,7 +33,7 @@ router.post('/', (req, res, next) =>{
     
     const orcamentos = req.body;
     let insertQuery = `insert into orcamento ("id_cliente", "id_funcionario", "id_servico", "data_criacao", "data_entrega", "valor", "status_andamento") 
-                       values(${orcamentos.idcliente}, ${orcamentos.idfuncionario}, ${orcamentos.idservico}, '${orcamentos.datacri}', '${orcamentos.dataent}', ${orcamentos.valor}, '${orcamentos.statusand}')`
+                       values(${orcamentos.id_cliente}, ${orcamentos.id_funcionario}, ${orcamentos.id_servico}, '${orcamentos.data_criacao}', '${orcamentos.data_entrega}', ${orcamentos.valor}, '${orcamentos.status_andamento}')`
 
     client.query(insertQuery, (err, result)=>{
         if(!err){
@@ -50,13 +50,13 @@ router.patch('/:id', (req, res, next) =>{
     
     let user = req.body;
     let updateQuery = `update orcamento set
-                       id_cliente = '${user.idcliente}',
-                       id_funcionario = '${user.idfuncionario}',
-                       id_servico = '${user.idservico}',
-                       data_criacao = '${user.datacri}',
-                       data_entrega = '${user.dataent}',
+                       id_cliente = '${user.id_cliente}',
+                       id_funcionario = '${user.id_funcionario}',
+                       id_servico = '${user.id_servico}',
+                       data_criacao = '${user.data_criacao}',
+                       data_entrega = '${user.data_entrega}',
                        valor = '${user.valor}',
-                       status_andamento = '${user.statusand}'
+                       status_andamento = '${user.status_andamento}'
                        where id_orcamento = ${req.params.id}`
 
     client.query(updateQuery, (err, result)=>{
