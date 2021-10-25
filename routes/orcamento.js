@@ -101,7 +101,7 @@ router.get('/relcli/:id', (req, res, next) =>{
 router.get('/relcon/', (req, res, next) =>{
 
     const CON = 'CONCLUIDO'
-    client.query(`Select * from orcamento where status_andamento=${CON}`, (err, result)=>{
+    client.query(`Select * from orcamento where status_andamento = 'CONCLUIDO'`, (err, result)=>{
         if(!err){
             res.send(result.rows);
         }
