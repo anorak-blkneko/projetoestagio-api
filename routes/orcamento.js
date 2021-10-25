@@ -85,4 +85,17 @@ router.delete('/:id', (req, res, next) =>{
 });
 
 
+//RETORNA O ORCAMENTO DO CLIENTE NO ID
+router.get('/relcli/:id', (req, res, next) =>{
+
+    client.query(`Select * from orcamento where id_cliente=${req.params.id}`, (err, result)=>{
+        if(!err){
+            res.send(result.rows);
+        }
+    });
+    client.end;
+
+});
+
+
 module.exports = router;
