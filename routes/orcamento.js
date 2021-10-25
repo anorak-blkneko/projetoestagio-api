@@ -97,5 +97,17 @@ router.get('/relcli/:id', (req, res, next) =>{
 
 });
 
+//RETORNA O ORCAMENTO CONCLUIDO
+router.get('/relcon/', (req, res, next) =>{
+
+    client.query(`Select * from orcamento where status_andamento=${'CONCLUIDO'}`, (err, result)=>{
+        if(!err){
+            res.send(result.rows);
+        }
+    });
+    client.end;
+
+});
+
 
 module.exports = router;
