@@ -87,6 +87,12 @@ CREATE TABLE orcamento(
   	FOREIGN KEY(id_servico) REFERENCES servico(id_servico)
 );
 
+CREATE TABLE usuarios(
+	id_usuario SERIAL PRIMARY KEY NOT NULL,
+	nome_usuario VARCHAR(20),
+	senha_usuario VARCHAR(20)
+);
+
 
 ----------------INSERTS----------------
 INSERT INTO pessoa (nome_pessoa) VALUES ('Augusto');
@@ -104,7 +110,8 @@ INSERT INTO servico (nome) VALUES ('serv1');
 
 INSERT INTO orcamento (id_cliente, id_funcionario, id_servico, data_criacao, data_entrega, valor, status_andamento) VALUES (1,1,1, '2021-09-08', '2021-12-10', 1000, 'Em Andamento');
 
-
+INSERT INTO usuarios (nome_usuario, senha_usuario) VALUES ('teste', '123');
+INSERT INTO usuarios (nome_usuario, senha_usuario) VALUES ('augusto', '1234');
 
 SELECT * FROM pessoa;
 SELECT * FROM cliente;
@@ -113,6 +120,7 @@ SELECT * FROM telefone;
 SELECT * FROM email;
 SELECT * FROM orcamento;
 SELECT * FROM servico
+SELECT * FROM usuarios
 
 ----------------DROPS----------------
 DROP TABLE pessoa;
