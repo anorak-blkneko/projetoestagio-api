@@ -4,7 +4,7 @@ const morgan = require('morgan');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 
-const rotaUsuarios = require('./routes/usuarios');
+
 const rotaCliente = require('./routes/cliente');
 const rotaEmail = require('./routes/email');
 const rotaEndereco = require('./routes/endereco');
@@ -44,7 +44,7 @@ app.use((req, res, next) => {
 
 app.use(morgan('dev'));
 
-app.use('/usuarios', rotaUsuarios);
+
 app.use('/cliente', rotaCliente);
 app.use('/email', rotaEmail);
 app.use('/endereco', rotaEndereco);
